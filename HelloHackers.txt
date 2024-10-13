@@ -1,0 +1,6 @@
+echo - read out anything on as argument
+whoami- prints name of user
+
+hacker@dojo:~$
+   hacker in the prompt is the username of the current user
+    The $ at the end of the prompt signifies that hacker is not an administrative user. if is become # instead of $ tht means tht user is admin
