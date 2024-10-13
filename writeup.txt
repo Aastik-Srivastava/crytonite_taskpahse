@@ -1,0 +1,37 @@
+echo - read out anything on as argument
+whoami- prints name of user
+
+
+/ - root where all directeries begin
+cd - change directory
+~ - this is the home/user path in short hand
+./ - explicit relative path to refer to the same directory
+
+
+cat - read files
+grep - search for soemthign we need - ( grep SEARCH_STRING /path/to/file )
+ls - used too list all directories 
+ls -a - used to show hidden directories as well tht begin with .
+touch -create a new blank file
+rm - delete a file
+mkdir - make direcotries
+find - to find a file - ( find -name my_subfile  OR TO SEARCH WHOLE SYSTEM : find / -name filename )
+ln -s : used to create symlinks. (  hacker@dojo:~$ cat /tmp/myfile
+                                    This is my file!
+                                    hacker@dojo:~$ ln -s /tmp/myfile /home/hacker/ourfile
+                                    hacker@dojo:~$ cat ~/ourfile
+                                    This is my file!
+                                 )
+symlink can be identified by using file command.
+
+man - command to read manual of any command
+man man - to read abt man
+to search in a manual we use /filename.
+--help or -h also might give instrusctions on fucntion usage.
+help when used also is for builtin programs. ( eg: help cd )
+
+* - When it encounters a * character in any argument, the shell will treat it as "wildcard" and try to replace that argument with any files that match the pattern.
+? - When it encounters a ? character in any argument, the shell will treat it as single-character wildcard. This works like *, but only matches one character.
+[]- a wildcard for some subset of potential characters, specified within the brackets. For example, [pwn] will match the character p, w, or n.
+
+If the first character in the brackets is a ! or (in newer versions of bash) a ^, the glob inverts, and that bracket instance matches characters that aren't listed.
