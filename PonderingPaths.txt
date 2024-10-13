@@ -1,0 +1,15 @@
+Linux filesystem is a "tree". That is, it has a root (written as /)
+
+absulute paths are complete paths beginning at root.
+relative paths begin at the directory we are in.
+
+/ - root where all directeries begin
+cd - change directory
+~ - this is the { home/user } path in short hand ( the expansion of ~ is an absolute path  )
+./ - explicit relative path to refer to the same directory
+
+the following absolute paths are all identical to each other:
+    /challenge
+    /challenge/.
+    /challenge/./././././././././
+    /./././challenge/././
