@@ -1,0 +1,53 @@
+the shell supports variables
+
+          hacker@dojo:~$ echo $PWD 
+          /home/hacker
+
+variable PWD holds the current working directory of the current shell.
+$ is used to access the variable $ triggers what is called variable expansion
+
+to store MULTIWORD variables:
+
+          hacker@dojo:~$ VAR="1337 SAUCE"
+
+variables that you set in a shell session are local to that shell process. other commands you run won't inherit them.
+
+          hacker@dojo:~$ VAR=1337
+          hacker@dojo:~$ echo "VAR is: $VAR"
+          VAR is: 1337
+          hacker@dojo:~$ sh
+          $ echo "VAR is: $VAR"
+          VAR is:
+
+sh here creates a child shell.when we export our variables, they are passed into the environment variables of child processes.
+
+          hacker@dojo:~$ VAR=1337
+          hacker@dojo:~$ export VAR
+          hacker@dojo:~$ sh
+          $ echo "VAR is: $VAR"
+          VAR is: 1337
+
+env command: it'll print out every exported variable set in your shell
+
+COMMAND SUBSTITUTION:to store the output of some command into a variable.
+
+          hacker@dojo:~$ FLAG=$(cat /flag)
+          hacker@dojo:~$ echo "$FLAG"
+          pwn.college{blahblahblah}
+          hacker@dojo:~$
+
+READING INPUT:
+reading input from the user USING read builtin.
+the -p argument, which lets us specify a prompt
+
+          hacker@dojo:~$ read -p "INPUT: " MY_VARIABLE
+          INPUT: Hello!
+          hacker@dojo:~$ echo "You entered: $MY_VARIABLE"
+          You entered: Hello!
+
+READING FILES:
+
+          hacker@dojo:~$ echo "test" > some_file
+          hacker@dojo:~$ read VAR < some_file
+          hacker@dojo:~$ echo $VAR
+          test
