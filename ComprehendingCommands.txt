@@ -1,0 +1,42 @@
+cat - read files
+cat will concatenate (hence the name) multiple files if provided multiple arguments.
+
+eg:       hacker@dojo:~$ cat myfile yourfile myfile
+          This is my file!
+          This is your file!
+          This is my file!
+given no arguments at all, cat will read from the terminal input and output it.
+
+grep - search for soemthign we need in a file- ( grep SEARCH_STRING /path/to/file )
+ls - used to list all directories 
+ls -a - used to show hidden directories tht begin with a .
+
+eg:       hacker@dojo:~$ ls
+          pwn
+          hacker@dojo:~$ ls -a
+          .college	pwn
+
+touch - create a new blank file
+rm - delete a file
+mkdir - make direcotries
+find - to find a file 
+
+      find -name my_subfile 
+      OR TO SEARCH WHOLE SYSTEM : find / -name filename
+
+
+ln -s : used to create symlinks( symbolic links ).
+
+          hacker@dojo:~$ cat /tmp/myfile
+          This is my file!
+          hacker@dojo:~$ ln -s /tmp/myfile /home/hacker/ourfile
+          hacker@dojo:~$ cat ~/ourfile
+          This is my file!
+                                 
+symlink can be identified by using file command.
+
+          hacker@dojo:~$ file /tmp/myfile
+          /tmp/myfile: ASCII text
+          hacker@dojo:~$ file ~/ourfile
+          /home/hacker/ourfile: symbolic link to /tmp/myfile
+          hacker@dojo:~$
