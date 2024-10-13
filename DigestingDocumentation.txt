@@ -1,0 +1,21 @@
+Documnetation helps us to figure out which argumnets to give and get help with commands.
+
+man - command to read manual of any command
+
+SYNTAX:      man command_name
+
+man man - to read a manual about using manual itself
+
+to search in a manual we use /filename >> hit n to go to the next result and N to go to the previous result
+
+to quit a manual we use q
+
+--help or -h also might give instrusctions on fucntion usage.
+
+Some commands, rather than being programs with man pages and help options, are built into the shell itself. These are called builtins. 
+Builtins are invoked just like commands, but the shell handles them internally instead of launching other programs.
+
+You can get a list of shell builtins by running the builtin help
+
+can get help on a specific one by passing it to the help builtin as an argument.
+( eg: help cd )
