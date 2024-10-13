@@ -1,0 +1,96 @@
+Standard Input - stdin - is the channel through which the process takes input. For example, your shell uses Standard Input to read the commands that you input.
+Standard Output - stdout - is the channel through which processes output normal data, such as the flag when it is printed to you in previous challenges or the output of utilities such as ls.
+Standard Error - stderr - is the channel through which processes output error details. For example, if you mistype a command, the shell will output, over standard error, that this command does not exist.
+
+REDIRECTING OUTPUT:
+we can redirect stdout to files using the > character
+
+        hacker@dojo:~$ echo hi > asdf
+        hacker@dojo:~$ cat asdf
+        hi
+
+Often times, you want to do this in aggregate: run a bunch of commands, save their output, and grep through it.
+You can redirect input in append mode using >> instead of >, as so:
+
+        hacker@dojo:~$ echo pwn > outfile
+        hacker@dojo:~$ echo college >> outfile
+        hacker@dojo:~$ cat outfile
+        pwn
+        college
+
+A File Descriptor (FD) is a number the describes a communication channel in Linux.
+
+FD 0: Standard Input
+FD 1: Standard Output
+FD 2: Standard Error
+
+a > without a number implies 1>, which redirects FD 1 (Standard Output).
+
+        hacker@dojo:~$ /challenge/run 2> errors.log
+
+That will redirect standard error (FD 2) to the errors.log file. Furthermore, you can redirect multiple file descriptors at the same time! For example:
+
+        hacker@dojo:~$ some_command > output.log 2> errors.log
+
+
+REDIRECTING INPUT:
+redirect output from programs, you can redirect input to programs! This is done using <, as so:
+
+            hacker@dojo:~$ echo yo > message
+            hacker@dojo:~$ cat message
+            yo
+            hacker@dojo:~$ rev < message
+            oy
+here rev is a function tht returns the reverse of a message.
+
+PIPE OPERATOR: ( | )
+We can avoid the need to store results to a file using the | (pipe) operator. Standard output from the command to the left of the pipe will be connected to (piped into) the standard input of the command to the right of the pipe.
+
+            hacker@dojo:~$ echo no-no | grep yes
+            hacker@dojo:~$ echo yes-yes | grep yes
+            yes-yes
+            hacker@dojo:~$ echo yes-yes | grep no
+            hacker@dojo:~$ echo no-no | grep no
+            no-no
+
+
+to grep through errors directly:
+The shell has a >& operator, which redirects a file descriptor to another file descriptor. This means that we can have a two-step process to grep through errors: first, we redirect standard error to standard output (2>& 1) and then pipe the now-combined stderr and stdout as normal (|)
+
+tee:
+When you pipe data from one command to another, you of course no longer see it on your screen. This is not always desired: for example, you might want to see the data as it flows through between your commands to debug unintended outcomes.
+
+The tee command, named after a "T-splitter" from plumbing pipes, duplicates data flowing through your pipes to any number of files provided on the command line. For example:
+
+            hacker@dojo:~$ echo hi | tee pwn college
+            hi
+            hacker@dojo:~$ cat pwn
+            hi
+            hacker@dojo:~$ cat college
+            hi
+            hacker@dojo:~$
+
+duplicate data to two files with tee:
+
+            hacker@dojo:~$ echo HACK | tee THE > PLANET
+            hacker@dojo:~$ cat THE
+            HACK
+            hacker@dojo:~$ cat PLANET
+            HACK
+            hacker@dojo:~$
+
+Process Substitution:
+If you write an argument of >(rev), bash will run the rev command, but hook up its input to a temporary file that it will create. This isn't a real file, of course, it's what's called a named pipe, in that it has a file name:
+
+            hacker@dojo:~$ echo >(rev)
+            /dev/fd/63
+            hacker@dojo:~$
+
+the /dev/fd/63 is the path of the named pipe file that's hooked up to rev's input While the command is running, writing to this file will pipe data to the standard input of the command. Typically, this is done using commands that take output files as arguments (like tee):
+
+            hacker@dojo:~$ echo HACK | rev
+            KCAH
+            hacker@dojo:~$ echo HACK | tee >(rev)
+            HACK
+            KCAH
+
