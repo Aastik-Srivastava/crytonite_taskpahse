@@ -1,0 +1,28 @@
+su (the switch user command), not used much now.
+        hacker@dojo:~$ su
+        Password: 
+        root@dojo:~$
+
+su will start a root shell (after authenticating with root's password). However, you can also give a username as an argument to switch to that user instead of root.
+        hacker@dojo:~$ su some-user
+        Password:
+        some-user@dojo:~$
+
+John the Ripper- to crack passwords.
+        hacker@dojo:~$ john ./my-leaked-shadow-file
+        Loaded 1 password hash (crypt, generic crypt(3) [?/64])
+        Will run 32 OpenMP threads
+        Press 'q' or Ctrl-C to abort, almost any other key for status
+        password1337      (zardus)
+        1g 0:00:00:22 3/3 0.04528g/s 10509p/s 10509c/s 10509C/s lykys..lank
+        Use the "--show" option to display all of the cracked passwords reliably
+        Session completed
+        hacker@dojo:~$
+
+Unlike su, which defaults to launching a shell as a specified user, sudo defaults to running a command as root:
+
+        hacker@dojo:~$ whoami
+        hacker
+        hacker@dojo:~$ sudo whoami
+        root
+        hacker@dojo:~$
