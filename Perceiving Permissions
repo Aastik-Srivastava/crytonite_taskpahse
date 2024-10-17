@@ -1,0 +1,36 @@
+check out a permissions of a file or directory using ls -l
+
+chown - change ownership
+chown can only be invoked by the root user
+
+check what groups you are part of with the id command
+
+chgrp - change group
+
+hacker@dojo:~$ ls -l
+total 4
+-rw-r--r-- 1 hacker hacker    0 May 22 13:42 college_file
+
+3 characters denoting permissions for the owning user ,
+3 characters denoting the permissions for the owning group (now you understand this as well!),
+and 3 characters denoting the permissions that all other access 
+
+r - user/group/other can read the file (or list the directory)
+w - user/group/other can modify the files (or create/delete files in the directory)
+x - user/group/other can execute the file as a program (or can enter the directory, e.g., using `cd`)
+- - nothing 
+
+chmod allows you to tweak permissions with the mode format of WHO+/-WHAT, where WHO is user/group/other and WHAT is read/write/execute.
+
+u=rw sets read and write permissions for the user, and wipes the execute permission
+o=x sets only executable permissions for the world, wiping read and write
+a=rwx sets read, write, and executable permissions for the user, group, and world!
+
+chmod u=rw,g=r /challenge/pwn will set the user permissions to read and write, and the group permissions to read-only
+chmod a=r,u=rw /challenge/pwn will set the user permissions to read and write, and the group and world permissions to read-only
+
+you can zero out permissions with -
+o=- /challenge/pwn 
+
+The "Set User ID" (SUID) permissions bit allows the user to run a program as the owner of that program's file.
+    chmod u+s [program]
