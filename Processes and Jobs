@@ -1,0 +1,28 @@
+ps - list running processes
+"Standard" Syntax: in this syntax, you can use -e to list "every" process and -f for a "full format" output, including arguments. 
+These can be combined into a single argument -ef.
+
+"BSD" Syntax: in this syntax, you can use a to list processes for all users, x to list processes that aren't running in a terminal, and u for a "user-readable" output.
+These can be combined into a single argument aux.
+
+kill-terminate processes
+CTRL C- to get rid of the process that's clogging up your terminal
+CTRL Z- suspend processes to the background
+fg - To resume processes, your shell provides the fg command
+bg -resume processes in the background with the bg command
+
+append a & to the command to run them in background
+          hacker@dojo:~$ sleep 1337 &
+
+
+access the exit code of the most recently-terminated command using the special ? variable with $ to read its value.
+          hacker@dojo:~$ touch test-file
+          hacker@dojo:~$ echo $?
+          0
+          hacker@dojo:~$ touch /test-file
+          touch: cannot touch '/test-file': Permission denied
+          hacker@dojo:~$ echo $?
+          1
+          hacker@dojo:~$
+
+commands that succeed typically return 0 and commands that fail typically return a non-zero value, most commonly 1 
